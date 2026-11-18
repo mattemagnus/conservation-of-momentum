@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="sv">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" data-content="pageDescription">
+  <title data-text="pageTitle"></title>
+  <link rel="stylesheet" href="style.css">
+  <script defer src="physics.js"></script>
+  <script defer src="content.js"></script>
+  <script defer src="app.js"></script>
+</head>
+<body>
+  <main class="page">
+    <header class="hero">
+      <div>
+        <p class="eyebrow" data-text="siteSection"></p>
+        <h1><span class="heading-start" data-text="headingStart"></span> <span data-text="headingEnd"></span></h1>
+        <p class="intro" data-text="introduction"></p>
+      </div>
+      <div class="formula" data-aria-label="formulaDescription">
+        <div class="formula-item"><span data-text="formulaLabel"></span><strong data-math="formula"></strong></div>
+        <div class="formula-item"><span data-text="impulseFormulaLabel"></span><strong data-math="impulseDefinition"></strong></div>
+        <div class="formula-item"><span data-text="impulseLawLabel"></span><strong data-math="impulseLaw"></strong></div>
+      </div>
+    </header>
+
+    <div class="workspace">
+      <section class="controls card" aria-labelledby="settings-title">
+        <div class="section-heading">
+          <div><p class="eyebrow" data-text="settingsStep"></p><h2 id="settings-title" data-text="settingsTitle"></h2></div>
+          <span class="heading-icon" aria-hidden="true">⚙</span>
+        </div>
+
+        <fieldset>
+          <legend data-text="collisionTypeLabel"></legend>
+          <div class="collision-types">
+            <label><input type="radio" name="collision" value="elastic" checked><span data-text="elasticLabel"></span></label>
+            <label><input type="radio" name="collision" value="inelastic"><span data-text="inelasticLabel"></span></label>
+            <label><input type="radio" name="collision" value="perfectlyInelastic"><span data-text="perfectlyInelasticLabel"></span></label>
+          </div>
+        </fieldset>
+        <p class="type-description" id="type-description"></p>
+        <div class="restitution" id="restitution-setting" hidden>
+          <label for="restitution"><span data-text="restitutionLabel"></span> <output id="restitution-value"></output></label>
+          <input id="restitution" type="range" min="0.05" max="0.95" step="0.05" value="0.5">
+          <p data-text="restitutionHint"></p>
+        </div>
+
+        <div class="cart-settings">
+          <div class="cart-title"><span class="dot dot-a"></span><h3 data-text="cartA"></h3></div>
+          <div class="input-grid">
+            <label for="mass-a"><span data-text="massLabel"></span> <span class="input-unit" data-text="massUnit"></span><input id="mass-a" type="number" min="0.1" max="100" step="0.1" value="2"></label>
+            <label for="velocity-a"><span data-text="velocityLabel"></span> <span class="input-unit" data-text="velocityUnit"></span><input id="velocity-a" type="number" min="-5" max="5" step="0.1" value="2"></label>
+          </div>
+        </div>
+        <div class="cart-settings">
+          <div class="cart-title"><span class="dot dot-b"></span><h3 data-text="cartB"></h3></div>
+          <div class="input-grid">
+            <label for="mass-b"><span data-text="massLabel"></span> <span class="input-unit" data-text="massUnit"></span><input id="mass-b" type="number" min="0.1" max="100" step="0.1" value="1"></label>
+            <label for="velocity-b"><span data-text="velocityLabel"></span> <span class="input-unit" data-text="velocityUnit"></span><input id="velocity-b" type="number" min="-5" max="5" step="0.1" value="-1"></label>
+          </div>
+        </div>
+        <p class="hint" data-text="inputHint"></p>
+        <p class="error" id="error" role="alert" hidden></p>
+        <div class="buttons">
+          <button class="primary" id="start" type="button" data-text="startButton"></button>
+          <button class="secondary" id="reset" type="button" data-text="resetButton"></button>
+        </div>
+      </section>
+
+      <div class="main-content">
+        <section class="simulation card" aria-labelledby="simulation-title">
+          <div class="section-heading">
+            <div><p class="eyebrow" data-text="simulationStep"></p><h2 id="simulation-title" data-text="simulationTitle"></h2></div>
+            <span class="status" id="status"></span>
+          </div>
+          <div class="track-scene" role="img" data-aria-label="trackDescription">
+            <div class="scene-label" data-text="trackLabel"></div>
+            <div class="track">
+              <div class="cart cart-a" id="cart-a"><span data-text="cartShortA"></span><i></i><i></i></div>
+              <div class="cart cart-b" id="cart-b"><span data-text="cartShortB"></span><i></i><i></i></div>
+            </div>
+            <div class="direction"><span data-text="negativeDirection"></span><span data-text="positiveDirection"></span></div>
+          </div>
+          <p class="scene-note" id="scene-note" aria-live="polite"></p>
+        </section>
+
+        <section class="force card" aria-labelledby="force-title">
+          <div class="section-heading">
+            <div><p class="eyebrow" data-text="forceStep"></p><h2 id="force-title" data-text="forceTitle"></h2></div>
+            <span class="unit" data-text="forceHeadingUnit"></span>
+          </div>
+          <p class="force-intro"><span data-text="forceIntroduction"></span> <strong data-math="impulseFormula"></strong></p>
+          <div class="force-chart" role="group" data-aria-label="forceChartLabel">
+            <div class="force-legend">
+              <span><span class="dot dot-a"></span> <span data-text="forceCartA"></span> <span class="force-value" id="force-a"></span></span>
+              <span><span class="dot dot-b"></span> <span data-text="forceCartB"></span> <span class="force-value" id="force-b"></span></span>
+            </div>
+            <svg class="force-graph" viewBox="0 0 600 230" role="img" aria-labelledby="graph-title graph-description">
+              <title id="graph-title" data-text="graphTitle"></title>
+              <desc id="graph-description" data-text="graphDescription"></desc>
+              <line class="graph-grid" x1="70" y1="25" x2="570" y2="25"></line>
+              <line class="graph-axis" x1="70" y1="100" x2="570" y2="100"></line>
+              <line class="graph-grid" x1="70" y1="175" x2="570" y2="175"></line>
+              <line class="graph-axis" x1="70" y1="25" x2="70" y2="175"></line>
+              <text class="graph-text" x="65" y="29" text-anchor="end" id="graph-max"></text>
+              <text class="graph-text" x="65" y="104" text-anchor="end">0</text>
+              <text class="graph-text" x="65" y="179" text-anchor="end" id="graph-min"></text>
+              <text class="graph-text" x="70" y="194" text-anchor="middle">0</text>
+              <text class="graph-text" x="570" y="194" text-anchor="middle" id="graph-duration"></text>
+              <text class="graph-text" x="320" y="222" text-anchor="middle" data-text="graphTimeAxis"></text>
+              <text class="graph-text" x="70" y="15" data-text="graphForceAxis"></text>
+              <path class="graph-line graph-line-a" id="graph-line-a"></path>
+              <path class="graph-line graph-line-b" id="graph-line-b"></path>
+            </svg>
+          </div>
+          <p class="results-note" data-text="graphNote"></p>
+        </section>
+
+        <section class="results card" aria-labelledby="results-title">
+          <div class="section-heading">
+            <div><p class="eyebrow" data-text="resultsStep"></p><h2 id="results-title" data-text="resultsTitle"></h2></div>
+            <span class="unit" data-text="resultsHeadingUnit"></span>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th scope="col" data-text="quantity"></th><th scope="col" data-text="before"></th><th scope="col" data-text="after"></th></tr></thead>
+              <tbody>
+                <tr><th scope="row"><span class="dot dot-a"></span> <span data-text="velocityA"></span></th><td id="before-v-a"></td><td id="after-v-a"></td></tr>
+                <tr><th scope="row"><span class="dot dot-b"></span> <span data-text="velocityB"></span></th><td id="before-v-b"></td><td id="after-v-b"></td></tr>
+                <tr class="total-row"><th scope="row" data-text="totalMomentum"></th><td id="before-p"></td><td id="after-p"></td></tr>
+                <tr><th scope="row" data-text="totalEnergy"></th><td id="before-energy"></td><td id="after-energy"></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="results-note" data-text="resultsNote"></p>
+        </section>
+      </div>
+    </div>
+    <section class="learn card" aria-labelledby="learn-title">
+      <div><p class="eyebrow" data-text="learningStep"></p><h2 id="learn-title" data-text="learningTitle"></h2></div>
+      <div id="learning-text"></div>
+    </section>
+    <footer data-text="footer"></footer>
+  </main>
+</body>
+</html>
