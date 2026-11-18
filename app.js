@@ -96,7 +96,7 @@
     if (animationId !== null) cancelAnimationFrame(animationId);
     animationId = null;
     lastTime = null;
-    state = { xA: 3, xB: 9, velocityA: 0, velocityB: 0, phase: "before", contact: null, contactTime: 0 };
+    state = { xA: 3, xB: trackLength / 2, velocityA: 0, velocityB: 0, phase: "before", contact: null, contactTime: 0 };
     $("start").disabled = false;
     $("status").textContent = messages.ready;
     $("scene-note").textContent = messages.readyNote;
