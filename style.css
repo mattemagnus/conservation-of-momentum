@@ -86,6 +86,7 @@ legend { margin-bottom: 10px; color: #34495d; font-size: .82rem; font-weight: 70
 .force-intro strong { color: #344f68; font-weight: 400; }
 .force-chart { padding: 16px; border: 1px solid #e8eff6; border-radius: 10px; background: #f7fafd; }
 .force-legend { display: flex; flex-wrap: wrap; gap: 8px 24px; color: #506579; font-size: .78rem; font-weight: 700; }
+.impulse-values { display: flex; flex-wrap: wrap; gap: 8px 24px; color: #506579; font-size: .78rem; font-weight: 700; }
 .force-value { color: #263f56; font-variant-numeric: tabular-nums; }
 .force-graph { display: block; width: 100%; margin-top: 8px; overflow: visible; }
 .graph-grid { stroke: #dae5ef; stroke-width: 1; }

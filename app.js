@@ -53,6 +53,8 @@
   function showBefore(config) {
     $("before-v-a").textContent = `${number(config.velocityA)} ${text.velocityUnit}`;
     $("before-v-b").textContent = `${number(config.velocityB)} ${text.velocityUnit}`;
+    $("before-p-a").textContent = number(physics.momentum(config.massA, config.velocityA));
+    $("before-p-b").textContent = number(physics.momentum(config.massB, config.velocityB));
     $("before-p").textContent = number(physics.momentum(config.massA, config.velocityA) + physics.momentum(config.massB, config.velocityB));
     $("before-energy").textContent = `${number(physics.kineticEnergy(config.massA, config.velocityA) + physics.kineticEnergy(config.massB, config.velocityB))} ${text.energyUnit}`;
   }
@@ -77,6 +79,9 @@
       }
       line.setAttribute("d", path);
       $(`force-${name}`).textContent = `${number(current && state.phase === "contact" ? current[property] : 0)} ${text.forceUnit}`;
+      const cart = name.toUpperCase();
+      const impulse = current ? physics.impulse(contact[`mass${cart}`], contact[`velocity${cart}`], current[`velocity${cart}`]) : 0;
+      $(`impulse-${name}`).textContent = `${number(impulse)} ${text.impulseUnit}`;
     }
     $("graph-max").textContent = contact ? number(maximum) : text.placeholder;
     $("graph-min").textContent = contact ? number(-maximum) : text.placeholder;
@@ -88,6 +93,8 @@
   function showAfter(config) {
     $("after-v-a").textContent = `${number(state.velocityA)} ${text.velocityUnit}`;
     $("after-v-b").textContent = `${number(state.velocityB)} ${text.velocityUnit}`;
+    $("after-p-a").textContent = number(physics.momentum(config.massA, state.velocityA));
+    $("after-p-b").textContent = number(physics.momentum(config.massB, state.velocityB));
     $("after-p").textContent = number(physics.momentum(config.massA, state.velocityA) + physics.momentum(config.massB, state.velocityB));
     $("after-energy").textContent = `${number(physics.kineticEnergy(config.massA, state.velocityA) + physics.kineticEnergy(config.massB, state.velocityB))} ${text.energyUnit}`;
   }
@@ -102,7 +109,7 @@
     $("scene-note").textContent = messages.readyNote;
     showForce();
     $("error").hidden = true;
-    ["before-v-a", "before-v-b", "before-p", "before-energy", "after-v-a", "after-v-b", "after-p", "after-energy"].forEach(id => $(id).textContent = text.placeholder);
+    ["before-v-a", "before-v-b", "before-p-a", "before-p-b", "before-p", "before-energy", "after-v-a", "after-v-b", "after-p-a", "after-p-b", "after-p", "after-energy"].forEach(id => $(id).textContent = text.placeholder);
     try {
       showBefore(settings());
     } catch (error) {
