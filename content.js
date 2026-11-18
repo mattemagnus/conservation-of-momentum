@@ -2,7 +2,7 @@
 window.LessonContent = {
   // Sidans rubriker, knappar och etiketter.
   text: {
-    pageTitle: "Rörelsemängd | Kollisionslabbet",
+    pageTitle: "Rörelsemängd | mattemagnus",
     pageDescription: "Undersök rörelsemängdens bevarande med två vagnar som kolliderar.",
     brandInitial: "m",
     brandName: "mattemagnus",
