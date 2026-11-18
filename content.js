@@ -4,9 +4,9 @@ window.LessonContent = {
   text: {
     pageTitle: "Rörelsemängd | Kollisionslabbet",
     pageDescription: "Undersök rörelsemängdens bevarande med två vagnar som kolliderar.",
-    brandInitial: "M",
-    brandName: "Mattemagnus",
-    brandLinkLabel: "Mattemagnus, startsida",
+    brandInitial: "m",
+    brandName: "mattemagnus",
+    brandLinkLabel: "mattemagnus, startsida",
     headerNote: "En interaktiv modell",
     siteSection: "Mekanik · Rörelsemängd · Impuls",
     headingStart: "Vad händer vid en",
@@ -72,7 +72,7 @@ window.LessonContent = {
     resultsNote: "Hastighet anges i m/s och rörelseenergi i joule (J). Eftervärden visas när vagnarna har kolliderat. Avrundning kan påverka de visade värdena.",
     learningStep: "ATT TA MED SIG",
     learningTitle: "Var tar rörelsemängden vägen?",
-    footer: "Fysiklabbet · En modell för att utforska rörelsemängd",
+    footer: "mattemagnus · En modell för att utforska rörelsemängd",
     placeholder: "–"
   },
 
