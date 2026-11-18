@@ -11,7 +11,7 @@
   const restitutionInput = $("restitution");
   const cartWidth = 0.8;
   const trackLength = 12;
-  const contactAnimationSeconds = 3;
+  const contactAnimationSeconds = 1.5;
   let state;
   let animationId = null;
   let lastTime = null;

@@ -4,7 +4,11 @@ window.LessonContent = {
   text: {
     pageTitle: "Rörelsemängd | Kollisionslabbet",
     pageDescription: "Undersök rörelsemängdens bevarande med två vagnar som kolliderar.",
-    siteSection: "Fysiklabbet / Mekanik",
+    brandInitial: "M",
+    brandName: "Mattemagnus",
+    brandLinkLabel: "Mattemagnus, startsida",
+    headerNote: "En interaktiv modell",
+    siteSection: "Mekanik · Rörelsemängd · Impuls",
     headingStart: "Vad händer vid en",
     headingEnd: "kollision?",
     introduction: "Utforska hur rörelsemängden fördelas när två vagnar stöter ihop.",

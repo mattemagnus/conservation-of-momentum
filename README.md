@@ -15,7 +15,7 @@ En interaktiv simulering av två vagnar och rörelsemängdens bevarande. Allt k�
 
 Välj stöttyp och ange massa och hastighet för båda vagnarna. Positiv hastighet är åt höger och negativ åt vänster. Tryck på **Starta simulering**. Tabellen visar värden efter stöten när kollisionen har skett.
 
-Diagrammet visar kraften på varje vagn under stöten, räknat från första kontakten. Den vågräta axeln visar modellens tid i sekunder och den lodräta visar kraft i newton (N). Krafterna är lika stora men motriktade. Kraften startar på noll, är störst mitt i stöten och återgår till noll. Den tecknade arean mellan respektive kraftkurva och tidsaxeln är impulsen, som motsvarar förändringen i vagnens rörelsemängd. Animationen visar stöten under tre sekunder i slow motion, oavsett hur kort modellens stöttid är.
+Diagrammet visar kraften på varje vagn under stöten, räknat från första kontakten. Den vågräta axeln visar modellens tid i sekunder och den lodräta visar kraft i newton (N). Krafterna är lika stora men motriktade. Kraften startar på noll, är störst mitt i stöten och återgår till noll. Den tecknade arean mellan respektive kraftkurva och tidsaxeln är impulsen, som motsvarar förändringen i vagnens rörelsemängd. Animationen visar rörelsen före och efter stöten i modellens normala hastighet och själva stöten under 1,5 sekunder i slow motion, oavsett hur kort modellens stöttid är.
 
 Vid oelastisk stöt kan studstalet ändras mellan 0,05 och 0,95. Ett större studstal ger en kraftigare studs. Elastisk stöt har studstalet 1 och fullständigt oelastisk stöt har studstalet 0. Om vagnarna inte närmar sig varandra sker ingen kollision. Simuleringen stannar om en vagn når banans kant; ändra hastigheterna om det sker före stöten.
 
