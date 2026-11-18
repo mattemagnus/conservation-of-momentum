@@ -37,7 +37,7 @@ window.LessonContent = {
     velocityUnit: "m/s",
     energyUnit: "J",
     forceUnit: "N",
-    inputHint: "Positiv hastighet är åt höger, negativ åt vänster. Massan kan vara 0,1–100 kg och hastigheten −5–5 m/s.",
+    inputHint: "Positiv hastighet är åt höger, negativ åt vänster. Massan kan vara 0,1–10 kg och hastigheten −5–5 m/s.",
     startButton: "▶  Starta simulering",
     resetButton: "Återställ",
     simulationStep: "2 / OBSERVERA",
