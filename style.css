@@ -86,15 +86,20 @@ legend { margin-bottom: 10px; color: #34495d; font-size: .82rem; font-weight: 70
 .force-intro strong { color: #344f68; font-weight: 400; }
 .force-chart { padding: 16px; border: 1px solid #e8eff6; border-radius: 10px; background: #f7fafd; }
 .force-legend { display: flex; flex-wrap: wrap; gap: 8px 24px; color: #506579; font-size: .78rem; font-weight: 700; }
-.impulse-values { display: flex; flex-wrap: wrap; gap: 8px 24px; color: #506579; font-size: .78rem; font-weight: 700; }
-.force-value { color: #263f56; font-variant-numeric: tabular-nums; }
 .force-graph { display: block; width: 100%; margin-top: 8px; overflow: visible; }
 .graph-grid { stroke: #dae5ef; stroke-width: 1; }
 .graph-axis { stroke: #91a7bb; stroke-width: 1.5; }
+.graph-arrow { fill: #91a7bb; }
 .graph-text { fill: #647d92; font-size: 13px; font-family: system-ui, sans-serif; }
+.graph-area { fill-opacity: .18; }
+.graph-area-a { fill: #287bc3; }
+.graph-area-b { fill: #df8932; }
 .graph-line { fill: none; stroke-width: 3; stroke-linecap: round; }
 .graph-line-a { stroke: #287bc3; }
 .graph-line-b { stroke: #df8932; }
+.graph-impulse { font-size: 13px; font-weight: 700; font-family: system-ui, sans-serif; paint-order: stroke; stroke: #f7fafd; stroke-width: 3px; stroke-linejoin: round; }
+.graph-impulse-a { fill: #205e98; }
+.graph-impulse-b { fill: #99530e; }
 .unit { color: #8a9eaf; font-size: .65rem; font-weight: 800; letter-spacing: .06em; text-align: right; }
 .table-wrap { overflow-x: auto; }
 table { width: 100%; border-collapse: collapse; text-align: left; font-size: .84rem; }

@@ -37,13 +37,35 @@
     };
   }
 
-  // En sinusformad kraftpuls och dess integraler ger kraft, hastighet och läge.
+  const pulseShape = 18;
+  const pulseRoot = Math.sqrt(pulseShape);
+  const pulseEdge = Math.exp(-pulseShape / 4);
+
+  // Integralen av exp(-x²), beräknad med en positiv potensserie.
+  function gaussianIntegral(x) {
+    let term = x;
+    let sum = term;
+    for (let n = 1; n <= 50; n++) {
+      term *= 2 * x * x / (2 * n + 1);
+      sum += term;
+      if (Math.abs(term) <= Math.abs(sum) * Number.EPSILON) break;
+    }
+    return Math.exp(-x * x) * sum;
+  }
+
+  const pulseStartIntegral = gaussianIntegral(-pulseRoot / 2);
+  const pulseArea = (gaussianIntegral(pulseRoot / 2) - pulseStartIntegral) / pulseRoot - pulseEdge;
+
+  // Klockformad kraftpuls: dra av ändvärdet så att kraften är noll vid kontaktens början och slut.
   function contactAtTime(model, time) {
     const t = Math.max(0, Math.min(time, model.duration));
-    const angle = Math.PI * t / model.duration;
-    const fraction = (1 - Math.cos(angle)) / 2;
-    const integratedFraction = (t - model.duration * Math.sin(angle) / Math.PI) / 2;
-    const forceA = t === 0 || t === model.duration ? 0 : model.impulseA * Math.PI / (2 * model.duration) * Math.sin(angle);
+    const u = t / model.duration;
+    const gaussian = Math.exp(-pulseShape * (u - 0.5) ** 2);
+    const area = (gaussianIntegral(pulseRoot * (u - 0.5)) - pulseStartIntegral) / pulseRoot;
+    const fraction = (area - pulseEdge * u) / pulseArea;
+    const firstMoment = area / 2 + (pulseEdge - gaussian) / (2 * pulseShape) - pulseEdge * u * u / 2;
+    const integratedFraction = model.duration * (u * fraction - firstMoment / pulseArea);
+    const forceA = t === 0 || t === model.duration ? 0 : model.impulseA * (gaussian - pulseEdge) / (model.duration * pulseArea);
     return {
       forceA,
       forceB: -forceA,

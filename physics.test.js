@@ -66,6 +66,23 @@ test("kraften börjar och slutar på noll och är störst i mitten", () => {
   assert.ok(Math.abs(2 * (after.velocityA - before.velocityA) / (2 * dt) - middle.forceA) < 1e-7);
 });
 
+test("kraftpulsen är klockformad och dess integraler ger hastighet och läge", () => {
+  const model = contactModel(2, 2, 1, -1, 0.5);
+  const peak = Math.abs(contactAtTime(model, model.duration / 2).forceA);
+  const quarter = Math.abs(contactAtTime(model, model.duration / 4).forceA);
+  assert.ok(quarter / peak > 0.3 && quarter / peak < 0.33);
+  for (const fraction of [0.1, 0.25, 0.75, 0.9]) {
+    const time = fraction * model.duration;
+    const dt = model.duration * 1e-5;
+    const current = contactAtTime(model, time);
+    const before = contactAtTime(model, time - dt);
+    const after = contactAtTime(model, time + dt);
+    assert.ok(Math.abs((after.displacementA - before.displacementA) / (2 * dt) - current.velocityA) < 1e-8);
+    assert.ok(Math.abs(model.massA * (after.velocityA - before.velocityA) / (2 * dt) - current.forceA) < 1e-7);
+    close(current.forceA, contactAtTime(model, model.duration - time).forceA);
+  }
+});
+
 test("stöttiden begränsar deformation vid hög relativ hastighet", () => {
   const model = contactModel(1, 5, 1, -5, 0);
   close(model.duration, 0.032);

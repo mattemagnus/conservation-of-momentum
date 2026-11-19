@@ -78,11 +78,13 @@
         path += ` L ${70 + 500 * progress} ${100 - 75 * current[property] / maximum}`;
       }
       line.setAttribute("d", path);
-      $(`force-${name}`).textContent = `${number(current && state.phase === "contact" ? current[property] : 0)} ${text.forceUnit}`;
+      $(`graph-area-${name}`).setAttribute("d", path ? `${path} L ${70 + 500 * progress} 100 Z` : "");
       const cart = name.toUpperCase();
       const impulse = current ? physics.impulse(contact[`mass${cart}`], contact[`velocity${cart}`], current[`velocity${cart}`]) : 0;
-      $(`impulse-${name}`).textContent = `${number(impulse)} ${text.impulseUnit}`;
+      const impulseText = `${number(impulse)} ${text.impulseUnit}`;
+      $(`graph-impulse-${name}`).textContent = impulseText;
     }
+    $("graph-impulses").textContent = `${text.impulseHeading}. ${text.impulseCartA} ${$("graph-impulse-a").textContent}. ${text.impulseCartB} ${$("graph-impulse-b").textContent}.`;
     $("graph-max").textContent = contact ? number(maximum) : text.placeholder;
     $("graph-min").textContent = contact ? number(-maximum) : text.placeholder;
     $("graph-duration").textContent = contact
