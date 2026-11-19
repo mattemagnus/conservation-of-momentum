@@ -43,7 +43,7 @@ window.LessonContent = {
     simulationStep: "2 / OBSERVERA",
     simulationTitle: "Kollisionsbanan",
     trackDescription: "Två vagnar på en rak bana. Vagn A är blå och vagn B är orange.",
-    trackLabel: "FRIKTIONSFRI BANA",
+    trackLabel: "Bortser från luftmotstånd och friktionsförluster",
     negativeDirection: "← negativ riktning",
     positiveDirection: "positiv riktning →",
     forceStep: "3 / UNDERSÖK",
