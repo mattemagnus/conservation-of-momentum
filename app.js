@@ -48,6 +48,33 @@
     $("cart-a").style.width = $("cart-b").style.width = `${width / trackLength * 100}%`;
     $("cart-a").style.left = `${(state.xA - shift) / trackLength * 100}%`;
     $("cart-b").style.left = `${(state.xB + shift) / trackLength * 100}%`;
+    const showAfter = state.phase === "after";
+    for (const [name, property] of [["a", "A"], ["b", "B"]]) {
+      const velocity = showAfter
+        ? state[`velocityAfter${property}`]
+        : state[`velocityBefore${property}`];
+      $(`cart-speed-${name}`).textContent = Number.isFinite(velocity)
+        ? `${number(velocity)} ${text.velocityUnit}`
+        : text.placeholder;
+    }
+    const speedA = $("cart-speed-a");
+    const speedB = $("cart-speed-b");
+    speedA.style.transform = "";
+    speedB.style.transform = "";
+    if (state.phase === "contact") {
+      const boundsA = speedA.getBoundingClientRect();
+      const boundsB = speedB.getBoundingClientRect();
+      const overlap = Math.min(boundsA.right, boundsB.right) - Math.max(boundsA.left, boundsB.left);
+      if (overlap > 0) {
+        const offset = overlap / 2 + 4;
+        speedA.style.transform = `translateX(calc(-50% - ${offset}px))`;
+        speedB.style.transform = `translateX(calc(-50% + ${offset}px))`;
+      }
+    }
+    $("track-scene").setAttribute(
+      "aria-label",
+      `${text.trackDescription} ${showAfter ? text.after : text.before}: ${text.cartA} ${$("cart-speed-a").textContent}, ${text.cartB} ${$("cart-speed-b").textContent}.`
+    );
   }
 
   function showBefore(config) {
@@ -93,6 +120,8 @@
   }
 
   function showAfter(config) {
+    state.velocityAfterA = state.velocityA;
+    state.velocityAfterB = state.velocityB;
     $("after-v-a").textContent = `${number(state.velocityA)} ${text.velocityUnit}`;
     $("after-v-b").textContent = `${number(state.velocityB)} ${text.velocityUnit}`;
     $("after-p-a").textContent = number(physics.momentum(config.massA, state.velocityA));
@@ -105,7 +134,11 @@
     if (animationId !== null) cancelAnimationFrame(animationId);
     animationId = null;
     lastTime = null;
-    state = { xA: 3, xB: trackLength / 2, velocityA: 0, velocityB: 0, phase: "before", contact: null, contactTime: 0 };
+    state = {
+      xA: 3, xB: trackLength / 2, velocityA: 0, velocityB: 0,
+      velocityBeforeA: NaN, velocityBeforeB: NaN, velocityAfterA: NaN, velocityAfterB: NaN,
+      phase: "before", contact: null, contactTime: 0
+    };
     $("start").disabled = false;
     $("status").textContent = messages.ready;
     $("scene-note").textContent = messages.readyNote;
@@ -113,8 +146,17 @@
     $("error").hidden = true;
     ["before-v-a", "before-v-b", "before-p-a", "before-p-b", "before-p", "before-energy", "after-v-a", "after-v-b", "after-p-a", "after-p-b", "after-p", "after-energy"].forEach(id => $(id).textContent = text.placeholder);
     try {
-      showBefore(settings());
+      const config = settings();
+      state.velocityA = config.velocityA;
+      state.velocityB = config.velocityB;
+      state.velocityBeforeA = config.velocityA;
+      state.velocityBeforeB = config.velocityB;
+      showBefore(config);
     } catch (error) {
+      state.velocityA = NaN;
+      state.velocityB = NaN;
+      state.velocityBeforeA = NaN;
+      state.velocityBeforeB = NaN;
       $("error").textContent = error.message;
       $("error").hidden = false;
     }

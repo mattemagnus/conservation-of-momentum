@@ -13,7 +13,7 @@ En interaktiv simulering av två vagnar och rörelsemängdens bevarande. Allt k�
 
 ## Använd simuleringen
 
-Välj stöttyp och ange massa och hastighet för båda vagnarna. Positiv hastighet är åt höger och negativ åt vänster. Tryck på **Starta simulering**. Tabellen visar värden efter stöten när kollisionen har skett.
+Välj stöttyp och ange massa och hastighet för båda vagnarna. Positiv hastighet är åt höger och negativ åt vänster. Ovanför varje vagn visas en hastighet åt gången: före stöten visas begynnelsehastigheten, som ligger kvar under stöten. Hastighetsrutorna är centrerade ovanför vagnarna före och efter stöten och flyttas isär under stöten om de annars skulle överlappa. När stöten är klar byts hastigheten till sluthastigheten. Tryck på **Starta simulering**. Tabellen visar värden efter stöten när kollisionen har skett.
 
 Diagrammet visar kraften på varje vagn under stöten, räknat från första kontakten. Den vågräta axeln visar modellens tid i sekunder och den lodräta visar kraft i newton (N). Krafterna är lika stora men motriktade. Kraften startar på noll, är störst mitt i stöten och återgår till noll. De färgade areorna mellan kraftkurvorna och tidsaxeln växer under stöten och visar impulserna hittills, som motsvarar förändringen i respektive vagns rörelsemängd. Animationen visar rörelsen före och efter stöten i modellens normala hastighet och själva stöten under 1,5 sekunder i slow motion, oavsett hur kort modellens stöttid är.
 

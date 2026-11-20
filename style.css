@@ -77,6 +77,8 @@ legend { margin-bottom: 10px; color: #34495d; font-size: .82rem; font-weight: 70
 .cart { position: absolute; bottom: 4px; width: 6.666667%; height: 42px; transform: translateX(-50%); display: grid; place-items: center; border-radius: 6px 6px 3px 3px; color: white; font-size: .78rem; font-weight: 800; }
 .cart-a { background: #398bd2; border: 1px solid #2475bd; }
 .cart-b { background: #eda04f; border: 1px solid #d78635; }
+.cart-velocity { position: absolute; left: 50%; bottom: calc(100% + 8px); padding: 3px 6px; border: 1px solid #dce5ee; border-radius: 6px; color: #233a51; background: #fff; font-size: .7rem; font-weight: 700; font-variant-numeric: tabular-nums; white-space: nowrap; pointer-events: none; }
+.cart-velocity-a, .cart-velocity-b { transform: translateX(-50%); }
 .cart i { position: absolute; bottom: -7px; width: 10px; height: 10px; border: 2px solid #f3f8fc; border-radius: 50%; background: #46596c; }
 .cart i:first-of-type { left: 13%; }
 .cart i:last-of-type { right: 13%; }
